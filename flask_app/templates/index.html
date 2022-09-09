@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Register</title>
+</head>
+
+<body>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages: %}
+                    {% if category=='logout': %}
+                        <h3>{{message}}</h3>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <div>
+        <h1>Please Register</h1>
+            <form action='/register' method="POST">
+                <label class='form-label' for='first_name'>First Name:</label>
+                <input class='form-control' type='text' id='first_name' name='first_name'>
+                <label class='form-label' for='last_name'>Last Name:</label>
+                <input class='form-control' type='text' id='last_name' name='last_name'>
+                <label class='form-label' for='email'>Email:</label>
+                <input class='form-control' type='text' id='email' name='email'>
+                <label class='form-label' for='password'>Password:</label>
+                <input class='form-control' type='password' id='password' name='password'>
+                <label class='form-label' for='confirm_password'>Confirm Password:</label>
+                <input class='form-control' type='password' id='confirm_password' name='confirm_password'>
+                <input class="btn btn-success mt-3" type="submit" value="Register">
+            </form>
+    </div>
+
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages: %}
+                    {% if category=='register_errors': %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div>
+        <h1>Login</h1>
+            <form action='/login' method="POST">
+                <label class='form-label' for='email'>Email:</label>
+                <input class='form-control' type='text' id='email' name='email'>
+                <label class='form-label' for='password'>Password:</label>
+                <input class='form-control' type='password' id='password' name='password'>
+                <input class="btn btn-primary mt-3" type="submit" value="Login">
+            </form>
+
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages: %}
+                    {% if category=='login_errors': %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+</body>
+
+</html>
